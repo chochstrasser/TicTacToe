@@ -93,7 +93,7 @@ class Game extends React.Component {
         'Go to game start';
       return (
         <li key={move}>
-          <button className={selected} onClick={() => this.jumpTo(move)}>{desc}</button>
+          <button className={this.state.step == current ? 'bold': ''} onClick={() => this.jumpTo(move)}>{desc}</button>
         </li>
       );
     });
