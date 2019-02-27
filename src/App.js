@@ -67,10 +67,11 @@ class Game extends React.Component {
       squares: squares,
       history: history.concat([{
         squares: squares,
+        row: Math.ceil(Math.ceil(i+1/3)/3),
+        column: ((i+1)%3)+3,
       }]),
       stepNumber: history.length,
       xIsNext: !this.state.xIsNext,
-      lastMoveCoordinates: Math.ceil(Math.ceil(i+1/3)/3),
     });
   }
   
@@ -85,9 +86,8 @@ class Game extends React.Component {
     const history = this.state.history;
     const current = history[this.state.stepNumber];
     const winner = calculateWinner(current.squares);
-    const lmc = this.state.lastMoveCoordinates;
     
-    console.log(lmc);
+    console.log(current.column);
     
     const moves = history.map((step, move) => {
       const desc = move ?
