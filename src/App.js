@@ -70,7 +70,7 @@ class Game extends React.Component {
       }]),
       stepNumber: history.length,
       xIsNext: !this.state.xIsNext,
-      current
+      lastMoveCoordinates: Math.ceil(i+1/3),
     });
   }
   
@@ -85,6 +85,8 @@ class Game extends React.Component {
     const history = this.state.history;
     const current = history[this.state.stepNumber];
     const winner = calculateWinner(current.squares);
+    
+    console.log(this.state.lastMoveCoordinates);
     
     const moves = history.map((step, move) => {
       const desc = move ?
