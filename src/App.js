@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
-
-
 function Square(props) {
   return (
     <button className='square' onClick={props.onClick}>
@@ -72,6 +70,7 @@ class Game extends React.Component {
       }]),
       stepNumber: history.length,
       xIsNext: !this.state.xIsNext,
+      current
     });
   }
   
@@ -89,7 +88,7 @@ class Game extends React.Component {
     
     const moves = history.map((step, move) => {
       const desc = move ?
-        'Go to move #' + move :
+        'Go to move #' + move + ' ' :
         'Go to game start';
       return (
         <li key={move}>
