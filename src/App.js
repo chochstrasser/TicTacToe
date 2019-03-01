@@ -24,6 +24,7 @@ class Board extends React.Component {
       }
       board.push(<div className="board-row">{children}</div>);
     }
+    console.log(board);
     return board;
   }
 
