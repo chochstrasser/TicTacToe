@@ -11,53 +11,28 @@ function Square(props) {
 }
 
 class Board extends React.Component {    
-  // renderSquare(i) {
-  //   return (
-  //     <Square
-  //       value={this.props.squares[i]}
-  //       onClick={() => this.props.onClick(i)}
-  //     />
-  //   );
-  // }
-  renderSquares() {
-    const p = this.props;
-    let board = [];
-    let index = 0;
-    for (let i = index; i < p.squares.length; i+=3) {
-      let children = [];
-      for (; index < i+3; index++) {
-        children.push(<Square key={index} 
-                        value={p.squares[index]}
-                        onClick={() => p.onClick(index)} 
-                      />);
-      }
-      board.push(<div className="board-row" key={i}>{children}</div>);
-    }
-    return board;
+  renderSquare(i) {
+    return (
+      <Square
+        value={this.props.squares[i]}
+        onClick={() => this.props.onClick(i)}
+      />
+    );
   }
 
   render() {
+    let board = [];
+    let index = 0;
+    for (let i = index; i < this.props.squares.length; i+=3) {
+      let children = [];
+      for (; index < i+3; index++) {
+        children.push(this.renderSquare(index));
+      }
+      board.push(<div className="board-row" key={i}>{children}</div>);
+    }
+
     return (
-      <div>
-        {this.renderSquares()}
-      </div>
-      // <div>
-      //   <div className="board-row">
-      //     {this.renderSquare(0)}
-      //     {this.renderSquare(1)}
-      //     {this.renderSquare(2)}
-      //   </div>
-      //   <div className="board-row">
-      //     {this.renderSquare(3)}
-      //     {this.renderSquare(4)}
-      //     {this.renderSquare(5)}
-      //   </div>
-      //   <div className="board-row">
-      //     {this.renderSquare(6)}
-      //     {this.renderSquare(7)}
-      //     {this.renderSquare(8)}
-      //   </div>
-      // </div>
+      <div>{board}</div>
     );
   }
 }
@@ -78,7 +53,6 @@ class Game extends React.Component {
     const history = this.state.history.slice(0, this.state.stepNumber + 1);
     const current = history[history.length - 1];
     const squares = current.squares.slice();
-    console.log(i);
     if (calculateWinner(squares) || squares[i]) {
       return;
     }
