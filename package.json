@@ -12,7 +12,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "startProduction": "node start.js"
+    "startProduction": "nodemon start.js"
   },
   "engines": {
     "node": "11.x"
